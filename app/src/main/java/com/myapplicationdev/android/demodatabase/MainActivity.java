@@ -29,16 +29,12 @@ public class MainActivity extends AppCompatActivity {
         tv = findViewById(R.id.tv);
         Button btnClear = findViewById(R.id.btnClear);
         DBHelper db = new DBHelper(MainActivity.this);
-        ArrayList<Task> data = db.getTaskContent();
+        ArrayList<Task> data = db.getTasks();
         ArrayAdapter<?> aaTask = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data);
         tv.setAdapter(aaTask);
 
-        btnClear.setOnClickListener(v -> {
-            db.insertTask("Submit RJ", "25 Apr 2021");
-        });
-        btnInsert.setOnClickListener(v -> {
-            db.insertTask("Submit RJ", "25 Apr 2021");
-        });
+        btnClear.setOnClickListener(v -> db.clearTask());
+        btnInsert.setOnClickListener(v -> db.insertTask("Submit RJ", "25 Apr 2021"));
         btnGetTasks.setOnClickListener(v -> {
 
             db.close();
